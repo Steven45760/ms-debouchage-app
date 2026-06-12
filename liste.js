@@ -13,7 +13,7 @@ window.onload = function() {
     <td>${inter.datePlanif}</td>
     <td>${inter.ville}</td>
     <td>
-        <button onclick="modifierIntervention(${inter.id})">Modifier</button>
+       <button onclick="window.location.href='modifier.html?id=${inter.id}'">Modifier</button>
         <button onclick="supprimerIntervention(${inter.id})">Supprimer</button>
     </td>
 `;
