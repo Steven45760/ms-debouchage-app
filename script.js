@@ -22,3 +22,9 @@ function genererNumeroIntervention() {
 window.onload = function() {
     document.getElementById("numero").value = genererNumeroIntervention();
 };
+// Sauvegarde une intervention dans LocalStorage
+function sauvegarderIntervention(data) {
+    let interventions = JSON.parse(localStorage.getItem("interventions")) || [];
+    interventions.push(data);
+    localStorage.setItem("interventions", JSON.stringify(interventions));
+}
