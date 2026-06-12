@@ -28,3 +28,29 @@ function sauvegarderIntervention(data) {
     interventions.push(data);
     localStorage.setItem("interventions", JSON.stringify(interventions));
 }
+// Gestion de la soumission du formulaire
+document.getElementById("interventionForm").addEventListener("submit", function(e) {
+    e.preventDefault(); // Empêche le rechargement de la page
+
+    // Récupération des valeurs du formulaire
+    const data = {
+        numero: document.getElementById("numero").value,
+        chantier: document.getElementById("chantier").value,
+        demandeur: document.getElementById("demandeur").value,
+        type: document.getElementById("type").value,
+        dateDebut: document.getElementById("dateDebut").value,
+        datePlanif: document.getElementById("datePlanif").value,
+        statut: document.getElementById("statut").value,
+        adresse: document.getElementById("adresse").value,
+        ville: document.getElementById("ville").value,
+        observations: document.getElementById("observations").value,
+        noteInterne: document.getElementById("noteInterne").value
+    };
+
+    // Sauvegarde dans LocalStorage
+    sauvegarderIntervention(data);
+
+    // Redirection vers la liste
+    window.location.href = "liste.html";
+});
+
