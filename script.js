@@ -34,6 +34,7 @@ document.getElementById("interventionForm").addEventListener("submit", function(
 
     // Récupération des valeurs du formulaire
     const data = {
+        id: Date.now(), // identifiant unique basé sur l'heure
         numero: document.getElementById("numero").value,
         chantier: document.getElementById("chantier").value,
         demandeur: document.getElementById("demandeur").value,
