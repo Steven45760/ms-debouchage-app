@@ -38,4 +38,19 @@ document.getElementById("recherche").addEventListener("input", function() {
         ligne.style.display = texte.includes(filtre) ? "" : "none";
     });
 });
+        let ordre = 1;
+
+function trier(champ) {
+    interventions.sort((a, b) => {
+        if (a[champ] < b[champ]) return -1 * ordre;
+        if (a[champ] > b[champ]) return 1 * ordre;
+        return 0;
+    });
+
+    ordre *= -1; // inverse le tri
+
+    localStorage.setItem("interventions", JSON.stringify(interventions));
+    location.reload();
+}
+
 
