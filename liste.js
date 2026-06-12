@@ -5,15 +5,28 @@ window.onload = function() {
     interventions.forEach(inter => {
         let tr = document.createElement("tr");
 
-        tr.innerHTML = `
-            <td>${inter.numero}</td>
-            <td>${inter.chantier}</td>
-            <td>${inter.demandeur}</td>
-            <td>${inter.type}</td>
-            <td>${inter.datePlanif}</td>
-            <td>${inter.ville}</td>
-        `;
+ tr.innerHTML = `
+    <td>${inter.numero}</td>
+    <td>${inter.chantier}</td>
+    <td>${inter.demandeur}</td>
+    <td>${inter.type}</td>
+    <td>${inter.datePlanif}</td>
+    <td>${inter.ville}</td>
+    <td>
+        <button onclick="modifierIntervention(${inter.id})">Modifier</button>
+        <button onclick="supprimerIntervention(${inter.id})">Supprimer</button>
+    </td>
+`;
+        function supprimerIntervention(id) {
+    let interventions = JSON.parse(localStorage.getItem("interventions")) || [];
 
-        tbody.appendChild(tr);
-    });
-};
+    // On filtre pour enlever l'intervention ciblée
+    interventions = interventions.filter(inter => inter.id !== id);
+
+    // On sauvegarde la nouvelle liste
+    localStorage.setItem("interventions", JSON.stringify(interventions));
+
+    // On recharge la page
+    location.reload();
+}
+
