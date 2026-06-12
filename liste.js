@@ -29,4 +29,13 @@ window.onload = function() {
     // On recharge la page
     location.reload();
 }
+document.getElementById("recherche").addEventListener("input", function() {
+    let filtre = this.value.toLowerCase();
+    let lignes = document.querySelectorAll("#tableauInterventions tbody tr");
+
+    lignes.forEach(ligne => {
+        let texte = ligne.innerText.toLowerCase();
+        ligne.style.display = texte.includes(filtre) ? "" : "none";
+    });
+});
 
