@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier intervention</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>Modifier une intervention</h1>
+
+    <form id="modifierForm">
+        <input type="hidden" id="id">
+
+        <label>N° Intervention</label>
+        <input type="text" id="numero">
+
+        <label>Chantier</label>
+        <input type="text" id="chantier">
+
+        <label>Demandé par</label>
+        <input type="text" id="demandeur">
+
+        <label>Type</label>
+        <input type="text" id="type">
+
+        <label>Date planifiée</label>
+        <input type="date" id="datePlanif">
+
+        <label>Ville</label>
+        <input type="text" id="ville">
+
+        <button type="submit">Enregistrer les modifications</button>
+    </form>
+
+    <a href="liste.html" style="display:block; text-align:center; margin-top:20px;">
+        Retour à la liste
+    </a>
+
+    <script src="modifier.js"></script>
+</body>
+</html>
