@@ -1,11 +1,24 @@
-// Génération temporaire d'un numéro d'intervention fictif
-function genererNumeroIntervention() {
-    const annee = new Date().getFullYear();
-    const numero = 1; // temporaire, on le remplacera par la vraie logique
-    return `${annee}/${numero}`;
+// Fonction : récupère l'année actuelle
+function getAnnee() {
+    return new Date().getFullYear();
 }
 
-// Au chargement de la page, on remplit le champ
+// Fonction : récupère le dernier numéro (temporaire)
+function getDernierNumero() {
+    // Pour l'instant, on simule une valeur
+    return 1;
+}
+
+// Fonction : génère le numéro complet AAAA/numéro
+function genererNumeroIntervention() {
+    const annee = getAnnee();
+    const dernierNumero = getDernierNumero();
+    const nouveauNumero = dernierNumero + 1;
+
+    return `${annee}/${nouveauNumero}`;
+}
+
+// Au chargement de la page
 window.onload = function() {
     document.getElementById("numero").value = genererNumeroIntervention();
 };
