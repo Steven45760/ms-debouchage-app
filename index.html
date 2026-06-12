@@ -5,8 +5,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MS Débouchage - Nouvelle Intervention</title>
 </head>
+
 <body>
+
     <h1>Créer une intervention</h1>
-    <p>Formulaire en construction...</p>
+
+    <form id="interventionForm">
+
+        <!-- En-tête -->
+        <div>
+            <label>N° Intervention</label>
+            <input type="text" id="numero" disabled>
+        </div>
+
+        <!-- Informations générales -->
+        <div>
+            <label>Nom du chantier</label>
+            <input type="text" id="chantier">
+        </div>
+
+        <div>
+            <label>Demandé par</label>
+            <select id="demandeur"></select>
+        </div>
+
+        <div>
+            <label>Type</label>
+            <select id="type"></select>
+        </div>
+
+        <!-- Planification -->
+        <div>
+            <label>Date début possible</label>
+            <input type="date" id="dateDebut">
+        </div>
+
+        <div>
+            <label>Date de planification</label>
+            <input type="date" id="datePlanif">
+        </div>
+
+        <div>
+            <label>Statut</label>
+            <select id="statut">
+                <option value="À planifier">À planifier</option>
+                <option value="Planifiée">Planifiée</option>
+                <option value="Terminée">Terminée</option>
+            </select>
+        </div>
+
+        <!-- Localisation -->
+        <div>
+            <label>Adresse</label>
+            <input type="text" id="adresse">
+        </div>
+
+        <div>
+            <label>Ville</label>
+            <input type="text" id="ville">
+        </div>
+
+        <!-- Informations complémentaires -->
+        <div>
+            <label>Observations</label>
+            <textarea id="observations"></textarea>
+        </div>
+
+        <div>
+            <label>Note interne</label>
+            <select id="noteInterne">
+                <option value="Non">Non</option>
+                <option value="Oui">Oui</option>
+            </select>
+        </div>
+
+        <!-- Bouton -->
+        <button type="submit">Créer l’intervention</button>
+
+    </form>
+
 </body>
 </html>
