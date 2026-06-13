@@ -22,9 +22,11 @@
         <div style="text-align:right; margin:15px 0;">
             <a href="ajouter.html" class="btn">➕ Ajouter une intervention</a>
         </div>
-<div style="text-align:right; margin-bottom:15px;">
-    <a href="calendrier.html" class="btn">📅 Mode calendrier</a>
-</div>
+
+        <!-- Bouton Mode calendrier -->
+        <div style="text-align:right; margin-bottom:15px;">
+            <a href="calendrier.html" class="btn">📅 Mode calendrier</a>
+        </div>
 
         <!-- Tableau -->
         <table id="tableauInterventions">
@@ -72,3 +74,45 @@ function render() {
             <td>${inter.datePlanif || ''}</td>
             <td><span class="statut statut-${(inter.statut||'a-planifier').toLowerCase().replace(/\s/g,'-')}">${inter.statut || 'À planifier'}</span></td>
             <td>
+                <a class="btn" href="modifier.html?id=${inter.id}">Modifier</a>
+            </td>
+        `;
+        tbody.appendChild(tr);
+    });
+
+    applyStatusClasses();
+}
+
+/* Appliquer classes de statut et ligne */
+function applyStatusClasses() {
+    document.querySelectorAll('#tableauInterventions tbody tr').forEach(tr => {
+        const statutCell = tr.querySelector('td:nth-child(6)');
+        if (!statutCell) return;
+
+        const badge = statutCell.querySelector('.statut');
+        const statutText = (badge ? badge.textContent : statutCell.textContent).trim().toLowerCase();
+
+        let cls = 'a-planifier';
+        if (statutText.includes('en cours')) cls = 'en-cours';
+        else if (statutText.includes('termin')) cls = 'termine';
+        else if (statutText.includes('planifi')) {
+            if (statutText.includes('à ')) cls = 'a-planifier';
+            else cls = 'planifie';
+        }
+
+        if (badge) {
+            badge.classList.remove('statut-a-planifier','statut-planifie','statut-en-cours','statut-termine');
+            badge.classList.add('statut-' + cls);
+        } else {
+            statutCell.innerHTML = `<span class="statut statut-${cls}">${statutCell.textContent.trim()}</span>`;
+        }
+
+        tr.classList.remove('ligne-a-planifier','ligne-planifie','ligne-en-cours','ligne-termine');
+        tr.classList.add('ligne-' + cls);
+    });
+}
+
+/* Événements */
+document.getElementById('recherche').addEventListener('input', render);
+
+/* Initialisation
