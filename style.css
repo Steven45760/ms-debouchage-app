@@ -1,22 +1,44 @@
+/* ------------------------------
+   STYLE GLOBAL
+------------------------------ */
+
 body {
     font-family: Arial, sans-serif;
-    background: #f5f7fa;
+    background-color: #1e1e1e;
+    color: #f0f0f0;
     margin: 0;
     padding: 20px;
 }
 
+/* Titres */
 h1 {
     text-align: center;
-    color: #333;
+    margin-bottom: 30px;
+    color: #4da3ff;
+    font-weight: 600;
 }
+
+/* Liens */
+a {
+    color: #4da3ff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ------------------------------
+   FORMULAIRES
+------------------------------ */
 
 form {
     max-width: 600px;
     margin: auto;
-    background: white;
+    background: #2a2a2a;
     padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 10px;
 }
 
 form div {
@@ -24,30 +46,24 @@ form div {
 }
 
 label {
-    font-weight: bold;
     display: block;
     margin-bottom: 5px;
+    color: #cccccc;
 }
 
 input, select, textarea {
     width: 100%;
     padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #444;
+    background: #333;
+    color: #fff;
 }
 
+textarea {
+    height: 100px;
+}
+
+/* Bouton principal */
 button {
-    width: 100%;
-    padding: 12px;
-    background: #0078ff;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 18px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #005fcc;
-}
+    width: 100
