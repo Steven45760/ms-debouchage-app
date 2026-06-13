@@ -179,3 +179,34 @@ input:focus, select:focus, textarea:focus {
     z-index: 9999;
 }
 .validation-popup.show { opacity: 1; transform: translateY(0); }
+
+/* Surbrillance des badges (statut) */
+.statut {
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-weight: 700;
+    color: #fff;
+    display: inline-block;
+    font-size: 0.9rem;
+    text-transform: none;
+}
+
+/* Couleurs badges */
+.statut-a-planifier { background: #6c757d; }   /* gris */
+.statut-planifie    { background: #007bff; }   /* bleu */
+.statut-en-cours    { background: #ff8c00; }   /* orange vif */
+.statut-termine     { background: #28a745; }   /* vert */
+
+/* Surbrillance des lignes entières (plus visible) */
+.ligne-a-planifier { background: rgba(108,117,125,0.08); }
+.ligne-planifie    { background: rgba(0,123,255,0.06); }
+.ligne-en-cours    { background: rgba(255,140,0,0.06); }
+.ligne-termine     { background: rgba(40,167,69,0.05); }
+
+/* Accentuer au survol */
+#tableauInterventions tbody tr:hover {
+    filter: brightness(1.06);
+    transform: translateY(-1px);
+    transition: 0.12s;
+}
+
