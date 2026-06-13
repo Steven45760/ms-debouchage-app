@@ -15,4 +15,4 @@ function initializeSampleData(forceReset = false) {
     localStorage.setItem('interventions', JSON.stringify(sample));
 }
 
-initializeSampleData(false);
+initializeSampleData(true);
