@@ -14,6 +14,7 @@
 
 <main class="container">
     <form id="modifierForm" class="card" novalidate>
+
         <input type="hidden" id="id">
 
         <div>
@@ -29,14 +30,17 @@
         <div>
             <label for="demandeur">Demandé par</label>
             <input type="text" id="demandeur" />
+        </div>
+
         <div>
-    <label for="type">Type</label>
-    <select id="type">
-        <option value="Curage">Curage</option>
-        <option value="ITV">ITV</option>
-        <option value="Curage + ITV">Curage + ITV</option>
-    </select>
-      
+            <label for="type">Type</label>
+            <select id="type">
+                <option value="Curage">Curage</option>
+                <option value="ITV">ITV</option>
+                <option value="Curage + ITV">Curage + ITV</option>
+            </select>
+        </div>
+
         <div>
             <label for="datePlanif">Date planifiée</label>
             <input type="date" id="datePlanif" />
@@ -70,7 +74,7 @@
         <button type="submit" class="btn-primary">Enregistrer les modifications</button>
     </form>
 
-    <a href="index.html" class="btn-retour" style="margin-top:18px; display:inline-block;">⬅ Retour au tableau</a>
+    <a href="index.html" class="btn-retour" style="margin-top:18px;">⬅ Retour au tableau</a>
 </main>
 
 <div id="popupValidation" class="validation-popup">✔ Modifications enregistrées</div>
