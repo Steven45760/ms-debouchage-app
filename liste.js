@@ -1,55 +1,38 @@
-// liste.js - version debug
+// Fonction pour appliquer la bonne couleur selon le statut
+function getStatutClass(statut) {
+    if (!statut) return "";
 
-function chargerInterventions() {
-    console.log("chargerInterventions: démarrage");
-    let interventions = JSON.parse(localStorage.getItem("interventions")) || [];
+    switch (statut.toLowerCase()) {
+        case "à planifier":
+        case "a planifier":
+            return "statut-a-planifier";
 
-    console.log("chargerInterventions: interventions récupérées", interventions);
+        case "planifié":
+        case "planifie":
+            return "statut-planifie";
 
-    // Si aucune intervention, on crée des données de test pour vérifier l'affichage
-    if (interventions.length === 0) {
-        console.warn("Aucune intervention trouvée dans LocalStorage. Création d'exemples de test.");
-        interventions = [
-            {
-                id: 1,
-                numero: "2026/1",
-                chantier: "Chantier A",
-                demandeur: "Sacha",
-                type: "Curage",
-                datePlanif: "2026-06-20",
-                ville: "Orléans",
-                statut: "À planifier",
-                adresse: "Rue Exemple 1",
-                observations: "Test"
-            },
-            {
-                id: 2,
-                numero: "2026/2",
-                chantier: "Chantier B",
-                demandeur: "Steven",
-                type: "ITV",
-                datePlanif: "2026-06-22",
-                ville: "Blois",
-                statut: "Planifiée",
-                adresse: "Rue Exemple 2",
-                observations: "Test 2"
-            }
-        ];
-        localStorage.setItem("interventions", JSON.stringify(interventions));
-        console.log("Données de test insérées dans LocalStorage");
+        case "en cours":
+            return "statut-en-cours";
+
+        case "terminé":
+        case "termine":
+            return "statut-termine";
+
+        default:
+            return "";
     }
+}
 
+// Charger toutes les interventions
+function chargerInterventions() {
+    let interventions = JSON.parse(localStorage.getItem("interventions")) || [];
     afficherInterventions(interventions);
 }
 
+// Affichage du tableau
 function afficherInterventions(interventions) {
-    console.log("afficherInterventions: nombre d'items =", interventions.length);
-
     let tbody = document.querySelector("#tableauInterventions tbody");
-    if (!tbody) {
-        console.error("afficherInterventions: impossible de trouver #tableauInterventions tbody");
-        return;
-    }
+    if (!tbody) return;
 
     tbody.innerHTML = "";
 
@@ -64,6 +47,11 @@ function afficherInterventions(interventions) {
             <td>${inter.datePlanif || ""}</td>
             <td>${inter.ville || ""}</td>
             <td>
+                <span class="statut ${getStatutClass(inter.statut)}">
+                    ${inter.statut}
+                </span>
+            </td>
+            <td>
                 <button class="btn" onclick="modifierIntervention(${inter.id})">Modifier</button>
                 <button class="btn-danger" onclick="supprimerIntervention(${inter.id})">Supprimer</button>
             </td>
@@ -73,6 +61,7 @@ function afficherInterventions(interventions) {
     });
 }
 
+// Recherche
 document.getElementById("recherche")?.addEventListener("input", function () {
     let recherche = this.value.toLowerCase();
     let interventions = JSON.parse(localStorage.getItem("interventions")) || [];
@@ -82,26 +71,24 @@ document.getElementById("recherche")?.addEventListener("input", function () {
         (inter.chantier || "").toLowerCase().includes(recherche) ||
         (inter.demandeur || "").toLowerCase().includes(recherche) ||
         (inter.type || "").toLowerCase().includes(recherche) ||
-        (inter.ville || "").toLowerCase().includes(recherche)
+        (inter.ville || "").toLowerCase().includes(recherche) ||
+        (inter.statut || "").toLowerCase().includes(recherche)
     );
 
     afficherInterventions(resultat);
 });
 
+// Suppression
 function supprimerIntervention(id) {
-    console.log("supprimerIntervention:", id);
     let interventions = JSON.parse(localStorage.getItem("interventions")) || [];
     interventions = interventions.filter(inter => inter.id !== id);
     localStorage.setItem("interventions", JSON.stringify(interventions));
     chargerInterventions();
 }
 
+// Modification
 function modifierIntervention(id) {
-    console.log("modifierIntervention:", id);
     window.location.href = `modifier.html?id=${id}`;
 }
 
-window.onload = function () {
-    console.log("window.onload -> chargerInterventions");
-    chargerInterventions();
-};
+window.onload = chargerInterventions;
