@@ -1,30 +1,34 @@
-// Charge les interventions depuis le LocalStorage
-let interventions = JSON.parse(localStorage.getItem("interventions")) || [];
+// ------------------------------
+// Charger les interventions
+// ------------------------------
+function chargerInterventions() {
+    let interventions = JSON.parse(localStorage.getItem("interventions")) || [];
 
-// Sélection du tableau
-const tbody = document.querySelector("#tableauInterventions tbody");
+    // Afficher TOUTES les interventions
+    afficherInterventions(interventions);
+}
 
-// Affiche toutes les interventions dans le tableau
-function afficherInterventions() {
+
+// ------------------------------
+// Afficher les interventions dans le tableau
+// ------------------------------
+function afficherInterventions(interventions) {
+    let tbody = document.querySelector("#tableauInterventions tbody");
     tbody.innerHTML = "";
 
     interventions.forEach(inter => {
-        const tr = document.createElement("tr");
+        let tr = document.createElement("tr");
 
         tr.innerHTML = `
             <td>${inter.numero}</td>
             <td>${inter.chantier}</td>
             <td>${inter.demandeur}</td>
             <td>${inter.type}</td>
-            <td>${inter.datePlanif}</td>
+            <td>${inter.datePlanif || ""}</td>
             <td>${inter.ville}</td>
             <td>
-                <button onclick="window.location.href='modifier.html?id=${inter.id}'">
-                    Modifier
-                </button>
-                <button onclick="supprimerIntervention(${inter.id})">
-                    Supprimer
-                </button>
+                <button class="btn" onclick="modifierIntervention(${inter.id})">Modifier</button>
+                <button class="btn-danger" onclick="supprimerIntervention(${inter.id})">Supprimer</button>
             </td>
         `;
 
@@ -32,20 +36,50 @@ function afficherInterventions() {
     });
 }
 
-afficherInterventions();
+
+// ------------------------------
+// Recherche en direct
+// ------------------------------
+document.getElementById("recherche").addEventListener("input", function () {
+    let recherche = this.value.toLowerCase();
+
+    let interventions = JSON.parse(localStorage.getItem("interventions")) || [];
+
+    let resultat = interventions.filter(inter =>
+        inter.numero.toLowerCase().includes(recherche) ||
+        inter.chantier.toLowerCase().includes(recherche) ||
+        inter.demandeur.toLowerCase().includes(recherche) ||
+        inter.type.toLowerCase().includes(recherche) ||
+        inter.ville.toLowerCase().includes(recherche)
+    );
+
+    afficherInterventions(resultat);
+});
 
 
-// 🔥 Fonction de suppression
+// ------------------------------
+// Suppression
+// ------------------------------
 function supprimerIntervention(id) {
+    let interventions = JSON.parse(localStorage.getItem("interventions")) || [];
+
     interventions = interventions.filter(inter => inter.id !== id);
+
     localStorage.setItem("interventions", JSON.stringify(interventions));
-    afficherInterventions();
+
+    chargerInterventions();
 }
 
 
-// 🔍 Recherche en temps réel
-document.getElementById("recherche").addEventListener("input", function () {
-    let filtre = this.value.toLowerCase();
-    let lignes = document.querySelectorAll("#tableauInterventions tbody tr");
+// ------------------------------
+// Modifier
+// ------------------------------
+function modifierIntervention(id) {
+    window.location.href = `modifier.html?id=${id}`;
+}
 
-    lignes.forEach(ligne =>
+
+// ------------------------------
+// Charger au démarrage
+// ------------------------------
+window.onload = chargerInterventions;
