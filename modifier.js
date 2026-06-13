@@ -1,71 +1,17 @@
-// Charger l'intervention à modifier
-window.onload = function () {
-    const params = new URLSearchParams(window.location.search);
-    const id = parseInt(params.get("id"));
+// Initialise des données de test uniquement si aucune donnée n'existe
+function initializeSampleData(forceReset = false) {
+    const existing = JSON.parse(localStorage.getItem('interventions'));
+    if (existing && !forceReset) return;
 
-    let interventions = JSON.parse(localStorage.getItem("interventions")) || [];
-    let inter = interventions.find(i => i.id === id);
+    const sample = [
+        { id: 1, numero: 'INT-001', chantier: 'Rue des Fleurs 12', demandeur: 'Dupont', type: 'Débouchage', datePlanif: '2026-06-20', ville: 'Orléans', statut: 'À planifier', observations: 'Accès par cour', noteInterne: 'Prioritaire' },
+        { id: 2, numero: 'INT-002', chantier: 'Avenue Victor 3', demandeur: 'Martin', type: 'Inspection', datePlanif: '2026-06-22', ville: 'Tours', statut: 'Planifié', observations: '', noteInterne: '' },
+        { id: 3, numero: 'INT-003', chantier: 'Place du Marché', demandeur: 'Leroy', type: 'Réparation', datePlanif: '2026-06-18', ville: 'Orléans', statut: 'En cours', observations: 'Matériel sur site', noteInterne: '' },
+        { id: 4, numero: 'INT-004', chantier: 'Impasse du Moulin', demandeur: 'Moreau', type: 'Nettoyage', datePlanif: '2026-06-10', ville: 'Blois', statut: 'Terminé', observations: 'OK', noteInterne: 'Facturer' }
+    ];
 
-    if (!inter) {
-        alert("Intervention introuvable");
-        window.location.href = "index.html";
-        return;
-    }
+    localStorage.setItem('interventions', JSON.stringify(sample));
+}
 
-    // Remplir les champs du formulaire
-    document.getElementById("id").value = inter.id;
-    document.getElementById("numero").value = inter.numero || "";
-    document.getElementById("chantier").value = inter.chantier || "";
-    document.getElementById("demandeur").value = inter.demandeur || "";
-    document.getElementById("type").value = inter.type || "";
-    document.getElementById("datePlanif").value = inter.datePlanif || "";
-    document.getElementById("ville").value = inter.ville || "";
-    document.getElementById("statut").value = inter.statut || "À planifier";
-    document.getElementById("observations").value = inter.observations || "";
-    document.getElementById("noteInterne").value = inter.noteInterne || "";
-};
-
-// Sauvegarder les modifications
-document.getElementById("modifierForm").addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    let interventions = JSON.parse(localStorage.getItem("interventions")) || [];
-
-    let id = parseInt(document.getElementById("id").value);
-    let index = interventions.findIndex(i => i.id === id);
-
-    if (index === -1) {
-        alert("Impossible de mettre à jour : intervention introuvable.");
-        return;
-    }
-
-    // Mise à jour de l'intervention
-    interventions[index] = {
-        id: id,
-        numero: document.getElementById("numero").value,
-        chantier: document.getElementById("chantier").value,
-        demandeur: document.getElementById("demandeur").value,
-        type: document.getElementById("type").value,
-        datePlanif: document.getElementById("datePlanif").value,
-        ville: document.getElementById("ville").value,
-        statut: document.getElementById("statut").value,
-        observations: document.getElementById("observations").value,
-        noteInterne: document.getElementById("noteInterne").value
-    };
-
-    // Sauvegarde dans LocalStorage
-    localStorage.setItem("interventions", JSON.stringify(interventions));
-
-    // Animation de validation
-    let popup = document.getElementById("popupValidation");
-    if (popup) {
-        popup.classList.add("show");
-        setTimeout(() => {
-            popup.classList.remove("show");
-            window.location.href = "index.html";
-        }, 1400);
-    } else {
-        alert("Modifications enregistrées !");
-        window.location.href = "index.html";
-    }
-});
+// Exécuter uniquement si aucune donnée n'existe
+initializeSampleData(false);
