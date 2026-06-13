@@ -1,63 +1,31 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Ajouter une intervention</title>
-    <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+document.getElementById("ajouterForm").addEventListener("submit", function(e){
+    e.preventDefault();
 
-<header>
-    <h1>Ajouter une intervention</h1>
-</header>
+    let interventions = JSON.parse(localStorage.getItem("interventions")) || [];
 
-<main class="container">
-    <form id="ajouterForm" class="card" novalidate>
+    let newId = interventions.length > 0 ? Math.max(...interventions.map(i => i.id)) + 1 : 1;
 
-        <div>
-            <label for="chantier">Chantier</label>
-            <input type="text" id="chantier" required />
-        </div>
+    const inter = {
+        id: newId,
+        numero: "INT-" + String(newId).padStart(3, "0"),
+        chantier: document.getElementById("chantier").value,
+        demandeur: document.getElementById("demandeur").value,
+        type: document.getElementById("type").value,
+        datePlanif: document.getElementById("datePlanif").value,
+        ville: document.getElementById("ville").value,
+        statut: "À planifier",
+        observations: document.getElementById("observations").value,
+        noteInterne: ""
+    };
 
-        <div>
-            <label for="demandeur">Demandé par</label>
-            <input type="text" id="demandeur" required />
-        </div>
+    interventions.push(inter);
+    localStorage.setItem("interventions", JSON.stringify(interventions));
 
-        <div>
-            <label for="type">Type</label>
-            <select id="type">
-                <option value="Curage">Curage</option>
-                <option value="ITV">ITV</option>
-                <option value="Curage + ITV">Curage + ITV</option>
-            </select>
-        </div>
+    let popup = document.getElementById("popupValidation");
+    popup.classList.add("show");
 
-        <div>
-            <label for="datePlanif">Date planifiée</label>
-            <input type="date" id="datePlanif" />
-        </div>
-
-        <div>
-            <label for="ville">Ville</label>
-            <input type="text" id="ville" />
-        </div>
-
-        <div>
-            <label for="observations">Observations</label>
-            <textarea id="observations" rows="4"></textarea>
-        </div>
-
-        <button type="submit" class="btn-primary">Créer l’intervention</button>
-    </form>
-
-    <a href="index.html" class="btn-retour" style="margin-top:18px;">⬅ Retour au tableau</a>
-</main>
-
-<div id="popupValidation" class="validation-popup">✔ Intervention ajoutée</div>
-
-<script src="ajouter.js"></script>
-</body>
-</html>
-
+    setTimeout(() => {
+        popup.classList.remove("show");
+        window.location.href = "index.html";
+    }, 1200);
+});
