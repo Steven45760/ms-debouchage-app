@@ -99,3 +99,21 @@ table {
 th, td {
     padding: 14px;
     text-align: left
+
+   .btn-primary {
+    background: #4da3ff;
+    padding: 14px 22px;
+    border-radius: 10px;
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.2s;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background: #1f7be0;
+    transform: translateY(-2px);
+}
+
