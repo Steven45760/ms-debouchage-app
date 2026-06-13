@@ -1,56 +1,51 @@
-window.onload = function() {
-    let interventions = JSON.parse(localStorage.getItem("interventions")) || [];
-    let tbody = document.querySelector("#tableauInterventions tbody");
+// Charge les interventions depuis le LocalStorage
+let interventions = JSON.parse(localStorage.getItem("interventions")) || [];
+
+// Sélection du tableau
+const tbody = document.querySelector("#tableauInterventions tbody");
+
+// Affiche toutes les interventions dans le tableau
+function afficherInterventions() {
+    tbody.innerHTML = "";
 
     interventions.forEach(inter => {
-        let tr = document.createElement("tr");
+        const tr = document.createElement("tr");
 
- tr.innerHTML = `
-    <td>${inter.numero}</td>
-    <td>${inter.chantier}</td>
-    <td>${inter.demandeur}</td>
-    <td>${inter.type}</td>
-    <td>${inter.datePlanif}</td>
-    <td>${inter.ville}</td>
-    <td>
-       <button onclick="window.location.href='modifier.html?id=${inter.id}'">Modifier</button>
-        <button onclick="supprimerIntervention(${inter.id})">Supprimer</button>
-    </td>
-`;
-        function supprimerIntervention(id) {
-    let interventions = JSON.parse(localStorage.getItem("interventions")) || [];
+        tr.innerHTML = `
+            <td>${inter.numero}</td>
+            <td>${inter.chantier}</td>
+            <td>${inter.demandeur}</td>
+            <td>${inter.type}</td>
+            <td>${inter.datePlanif}</td>
+            <td>${inter.ville}</td>
+            <td>
+                <button onclick="window.location.href='modifier.html?id=${inter.id}'">
+                    Modifier
+                </button>
+                <button onclick="supprimerIntervention(${inter.id})">
+                    Supprimer
+                </button>
+            </td>
+        `;
 
-    // On filtre pour enlever l'intervention ciblée
-    interventions = interventions.filter(inter => inter.id !== id);
-
-    // On sauvegarde la nouvelle liste
-    localStorage.setItem("interventions", JSON.stringify(interventions));
-
-    // On recharge la page
-    location.reload();
+        tbody.appendChild(tr);
+    });
 }
-document.getElementById("recherche").addEventListener("input", function() {
+
+afficherInterventions();
+
+
+// 🔥 Fonction de suppression
+function supprimerIntervention(id) {
+    interventions = interventions.filter(inter => inter.id !== id);
+    localStorage.setItem("interventions", JSON.stringify(interventions));
+    afficherInterventions();
+}
+
+
+// 🔍 Recherche en temps réel
+document.getElementById("recherche").addEventListener("input", function () {
     let filtre = this.value.toLowerCase();
     let lignes = document.querySelectorAll("#tableauInterventions tbody tr");
 
-    lignes.forEach(ligne => {
-        let texte = ligne.innerText.toLowerCase();
-        ligne.style.display = texte.includes(filtre) ? "" : "none";
-    });
-});
-        let ordre = 1;
-
-function trier(champ) {
-    interventions.sort((a, b) => {
-        if (a[champ] < b[champ]) return -1 * ordre;
-        if (a[champ] > b[champ]) return 1 * ordre;
-        return 0;
-    });
-
-    ordre *= -1; // inverse le tri
-
-    localStorage.setItem("interventions", JSON.stringify(interventions));
-    location.reload();
-}
-
-
+    lignes.forEach(ligne =>
