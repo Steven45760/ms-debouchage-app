@@ -202,3 +202,34 @@ button:hover {
 @media (max-width: 700px) {
     table, thead, tbody, th, td, tr {
         display: block;
+
+
+       .statut {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    color: white;
+    display: inline-block;
+    font-size: 0.9em;
+}
+
+/* À planifier = gris */
+.statut-a-planifier {
+    background-color: #6c757d;
+}
+
+/* Planifié = bleu */
+.statut-planifie {
+    background-color: #007bff;
+}
+
+/* En cours = orange */
+.statut-en-cours {
+    background-color: #fd7e14;
+}
+
+/* Terminé = vert */
+.statut-termine {
+    background-color: #28a745;
+}
+
