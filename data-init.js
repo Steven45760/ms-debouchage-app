@@ -14,5 +14,6 @@ function initializeSampleData(forceReset = false) {
 }
 
 // Exécuter automatiquement à l'inclusion
-initializeSampleData();
+initializeSampleData(false);
+
 
