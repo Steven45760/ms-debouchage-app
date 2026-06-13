@@ -1,4 +1,6 @@
-// Génère un numéro d’intervention automatique (AAAA/numéro)
+// ------------------------------
+// Génération automatique du numéro
+// ------------------------------
 function genererNumeroIntervention() {
     const annee = new Date().getFullYear();
 
@@ -16,13 +18,10 @@ function genererNumeroIntervention() {
     return `${annee}/${prochainNumero}`;
 }
 
-// Remplit automatiquement le numéro au chargement
-window.onload = function () {
-    document.getElementById("numero").value = genererNumeroIntervention();
-};
 
-
-// 🔥 Sauvegarde d’une intervention
+// ------------------------------
+// Sauvegarde d’une intervention
+// ------------------------------
 document.getElementById("interventionForm").addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -32,7 +31,25 @@ document.getElementById("interventionForm").addEventListener("submit", function 
     // Crée une nouvelle intervention
     let nouvelleIntervention = {
         id: Date.now(), // ID unique
-        numero: document.getElementById("numero").value,
+        numero: genererNumeroIntervention(), // <-- AUTOMATIQUE
         chantier: document.getElementById("chantier").value,
         demandeur: document.getElementById("demandeur").value,
-        type: document.getElementById("
+        type: document.getElementById("type").value,
+        dateDebut: document.getElementById("dateDebut").value,
+        datePlanif: document.getElementById("datePlanif").value,
+        statut: document.getElementById("statut").value,
+        adresse: document.getElementById("adresse").value,
+        ville: document.getElementById("ville").value,
+        observations: document.getElementById("observations").value,
+        noteInterne: document.getElementById("noteInterne").value
+    };
+
+    // Ajoute l’intervention
+    interventions.push(nouvelleIntervention);
+
+    // Sauvegarde dans LocalStorage
+    localStorage.setItem("interventions", JSON.stringify(interventions));
+
+    // Retour à la liste
+    window.location.href = "index.html";
+});
