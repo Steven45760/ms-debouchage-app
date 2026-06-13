@@ -1,1 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des interventions</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>Liste des interventions</h1>
+
+    <!-- Bouton Nouvelle intervention -->
+    <a href="formulaire.html" 
+       style="display:block; text-align:center; margin-bottom:20px; font-size:18px;">
+        ➕ Nouvelle intervention
+    </a>
+
+    <!-- Barre de recherche -->
+    <input 
+        type="text" 
+        id="recherche" 
+        placeholder="Rechercher une intervention..." 
+        style="width: 90%; padding: 10px; margin: 20px auto; display: block;"
+    >
+
+    <!-- Tableau -->
+    <table id="tableauInterventions" style="width:100%; border-collapse: collapse;">
+        <thead>
+            <tr>
+                <th onclick="trier('numero')">N°</th>
+                <th onclick="trier('chantier')">Chantier</th>
+                <th onclick="trier('demandeur')">Demandé par</th>
+                <th onclick="trier('type')">Type</th>
+                <th onclick="trier('datePlanif')">Date planif</th>
+                <th onclick="trier('ville')">Ville</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <!-- Les lignes seront générées par liste.js -->
+        </tbody>
+    </table>
+
+    <script src="liste.js"></script>
+
+</body>
+</html>
 
