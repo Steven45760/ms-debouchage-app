@@ -17,7 +17,7 @@
 
         <div>
             <label>N° Intervention</label>
-            <input type="text" id="numero">
+            <input type="text" id="numero" disabled>
         </div>
 
         <div>
@@ -45,3 +45,38 @@
             <input type="text" id="ville">
         </div>
 
+        <div>
+            <label>Statut</label>
+            <select id="statut">
+                <option value="À planifier">À planifier</option>
+                <option value="Planifié">Planifié</option>
+                <option value="En cours">En cours</option>
+                <option value="Terminé">Terminé</option>
+            </select>
+        </div>
+
+        <div>
+            <label>Observations</label>
+            <textarea id="observations"></textarea>
+        </div>
+
+        <div>
+            <label>Note interne</label>
+            <textarea id="noteInterne"></textarea>
+        </div>
+
+        <!-- ⭐⭐ LE BOUTON QUI MANQUAIT ⭐⭐ -->
+        <button type="submit" class="btn-primary" style="margin-top:20px;">
+            Enregistrer les modifications
+        </button>
+
+    </form>
+
+    <a href="index.html" style="display:block; margin-top:20px; text-align:center;">
+        Retour à la liste
+    </a>
+
+    <script src="modifier.js"></script>
+
+</body>
+</html>
