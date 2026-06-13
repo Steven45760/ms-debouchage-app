@@ -1,3 +1,5 @@
+console.log("AJOUTER.JS CHARGÉ");
+
 document.getElementById("ajouterForm").addEventListener("submit", function(e){
     e.preventDefault();
 
