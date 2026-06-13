@@ -3,54 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste des interventions</title>
+    <title>Dashboard - Interventions</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <h1>Liste des interventions</h1>
-<div style="text-align:center; margin-bottom:25px;">
-    <a href="formulaire.html" class="btn btn-primary">
-        ➕ Nouvelle intervention
-    </a>
-</div>
+    <!-- HEADER -->
+    <header>
+        <h1>MS Débouchage – Tableau des interventions</h1>
+    </header>
 
-    <!-- Bouton Nouvelle intervention -->
-    <a href="formulaire.html" 
-       style="display:block; text-align:center; margin-bottom:20px; font-size:18px;">
-        ➕ Nouvelle intervention
-    </a>
+    <!-- CONTENU -->
+    <div class="container">
 
-    <!-- Barre de recherche -->
-    <input 
-        type="text" 
-        id="recherche" 
-        placeholder="Rechercher une intervention..." 
-        style="width: 90%; padding: 10px; margin: 20px auto; display: block;"
-    >
+        <!-- BOUTON NOUVELLE INTERVENTION -->
+        <div style="text-align:center; margin-bottom:25px;">
+            <a href="formulaire.html" class="btn-primary">
+                ➕ Nouvelle intervention
+            </a>
+        </div>
 
-    <!-- Tableau -->
-    <table id="tableauInterventions" style="width:100%; border-collapse: collapse;">
-        <thead>
-            <tr>
-                <th onclick="trier('numero')">N°</th>
-                <th onclick="trier('chantier')">Chantier</th>
-                <th onclick="trier('demandeur')">Demandé par</th>
-                <th onclick="trier('type')">Type</th>
-                <th onclick="trier('datePlanif')">Date planif</th>
-                <th onclick="trier('ville')">Ville</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
+        <!-- CARD TABLEAU -->
+        <div class="card">
 
-        <tbody>
-            <!-- Les lignes seront générées par liste.js -->
-        </tbody>
-    </table>
+            <!-- Barre de recherche -->
+            <input 
+                type="text" 
+                id="recherche" 
+                placeholder="Rechercher une intervention..."
+            >
+
+            <!-- Tableau -->
+            <table id="tableauInterventions">
+                <thead>
+                    <tr>
+                        <th onclick="trier('numero')">N°</th>
+                        <th onclick="trier('chantier')">Chantier</th>
+                        <th onclick="trier('demandeur')">Demandé par</th>
+                        <th onclick="trier('type')">Type</th>
+                        <th onclick="trier('datePlanif')">Date planif</th>
+                        <th onclick="trier('ville')">Ville</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <!-- Rempli automatiquement par liste.js -->
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
 
     <script src="liste.js"></script>
 
 </body>
 </html>
-
