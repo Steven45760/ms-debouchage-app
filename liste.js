@@ -92,3 +92,28 @@ function modifierIntervention(id) {
 }
 
 window.onload = chargerInterventions;
+
+function getLigneClass(statut) {
+    if (!statut) return "";
+
+    switch (statut.toLowerCase()) {
+        case "à planifier":
+        case "a planifier":
+            return "ligne-a-planifier";
+
+        case "planifié":
+        case "planifie":
+            return "ligne-planifie";
+
+        case "en cours":
+            return "ligne-en-cours";
+
+        case "terminé":
+        case "termine":
+            return "ligne-termine";
+
+        default:
+            return "";
+    }
+}
+
