@@ -1,5 +1,7 @@
 
 console.log("AJOUTER.JS CHARGÉ");
+document.getElementById("ajouterForm").addEventListener("submit", function(e){
+    console.log("SUBMIT OK");
 
 
 document.getElementById("ajouterForm").addEventListener("submit", function(e){
