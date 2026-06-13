@@ -9,86 +9,84 @@
 
 <body>
 
-    <h1>Créer une intervention</h1>
+    <header>
+        <h1>Créer une intervention</h1>
+    </header>
 
-    <form id="interventionForm">
+    <div class="container">
+        <div class="card">
 
-        <!-- En-tête -->
-        <div>
-            <label>N° Intervention</label>
-            <input type="text" id="numero" disabled>
+            <form id="interventionForm">
+
+                <!-- Champ supprimé : N° Intervention -->
+
+                <div>
+                    <label>Nom du chantier</label>
+                    <input type="text" id="chantier">
+                </div>
+
+                <div>
+                    <label>Demandé par</label>
+                    <select id="demandeur"></select>
+                </div>
+
+                <div>
+                    <label>Type</label>
+                    <select id="type"></select>
+                </div>
+
+                <div>
+                    <label>Date début possible</label>
+                    <input type="date" id="dateDebut">
+                </div>
+
+                <div>
+                    <label>Date de planification</label>
+                    <input type="date" id="datePlanif">
+                </div>
+
+                <div>
+                    <label>Statut</label>
+                    <select id="statut">
+                        <option value="À planifier">À planifier</option>
+                        <option value="Planifiée">Planifiée</option>
+                        <option value="Terminée">Terminée</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>Adresse</label>
+                    <input type="text" id="adresse">
+                </div>
+
+                <div>
+                    <label>Ville</label>
+                    <input type="text" id="ville">
+                </div>
+
+                <div>
+                    <label>Observations</label>
+                    <textarea id="observations"></textarea>
+                </div>
+
+                <div>
+                    <label>Note interne</label>
+                    <select id="noteInterne">
+                        <option value="Non">Non</option>
+                        <option value="Oui">Oui</option>
+                    </select>
+                </div>
+
+                <button type="submit">Créer l’intervention</button>
+
+            </form>
+
+            <div style="text-align:center; margin-top:20px;">
+                <a href="index.html" class="btn">Retour à la liste</a>
+            </div>
+
         </div>
-
-        <!-- Informations générales -->
-        <div>
-            <label>Nom du chantier</label>
-            <input type="text" id="chantier">
-        </div>
-
-        <div>
-            <label>Demandé par</label>
-            <select id="demandeur"></select>
-        </div>
-
-        <div>
-            <label>Type</label>
-            <select id="type"></select>
-        </div>
-
-        <!-- Planification -->
-        <div>
-            <label>Date début possible</label>
-            <input type="date" id="dateDebut">
-        </div>
-
-        <div>
-            <label>Date de planification</label>
-            <input type="date" id="datePlanif">
-        </div>
-
-        <div>
-            <label>Statut</label>
-            <select id="statut">
-                <option value="À planifier">À planifier</option>
-                <option value="Planifiée">Planifiée</option>
-                <option value="Terminée">Terminée</option>
-            </select>
-        </div>
-
-        <!-- Localisation -->
-        <div>
-            <label>Adresse</label>
-            <input type="text" id="adresse">
-        </div>
-
-        <div>
-            <label>Ville</label>
-            <input type="text" id="ville">
-        </div>
-
-        <!-- Informations complémentaires -->
-        <div>
-            <label>Observations</label>
-            <textarea id="observations"></textarea>
-        </div>
-
-        <div>
-            <label>Note interne</label>
-            <select id="noteInterne">
-                <option value="Non">Non</option>
-                <option value="Oui">Oui</option>
-            </select>
-        </div>
-
-        <!-- Bouton -->
-        <button type="submit">Créer l’intervention</button>
-
-    </form>
-
-    <!-- Retour à la liste -->
-    <a href="index.html" style="display:block; text-align:center; margin-top:20px;">
-        Voir la liste des interventions
-    </a>
+    </div>
 
     <script src="script.js"></script>
 </body>
