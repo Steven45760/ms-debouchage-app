@@ -34,6 +34,11 @@ document.getElementById("modifierForm").addEventListener("submit", function (e) 
     let id = parseInt(document.getElementById("id").value);
     let index = interventions.findIndex(i => i.id === id);
 
+    if (index === -1) {
+        alert("Impossible de mettre à jour : intervention introuvable.");
+        return;
+    }
+
     // Mise à jour de l'intervention
     interventions[index] = {
         id: id,
@@ -53,10 +58,14 @@ document.getElementById("modifierForm").addEventListener("submit", function (e) 
 
     // Animation de validation
     let popup = document.getElementById("popupValidation");
-    popup.classList.add("show");
-
-    setTimeout(() => {
-        popup.classList.remove("show");
+    if (popup) {
+        popup.classList.add("show");
+        setTimeout(() => {
+            popup.classList.remove("show");
+            window.location.href = "index.html";
+        }, 1400);
+    } else {
+        alert("Modifications enregistrées !");
         window.location.href = "index.html";
-    }, 1500);
+    }
 });
