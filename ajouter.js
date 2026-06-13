@@ -1,9 +1,3 @@
-
-console.log("AJOUTER.JS CHARGÉ");
-document.getElementById("ajouterForm").addEventListener("submit", function(e){
-    console.log("SUBMIT OK");
-
-
 document.getElementById("ajouterForm").addEventListener("submit", function(e){
     e.preventDefault();
 
@@ -27,9 +21,11 @@ document.getElementById("ajouterForm").addEventListener("submit", function(e){
     interventions.push(inter);
     localStorage.setItem("interventions", JSON.stringify(interventions));
 
+    // POPUP
     let popup = document.getElementById("popupValidation");
     popup.classList.add("show");
 
+    // REDIRECTION
     setTimeout(() => {
         popup.classList.remove("show");
         window.location.href = "index.html";
