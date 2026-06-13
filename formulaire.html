@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MS Débouchage - Nouvelle Intervention</title>
+    <title>Nouvelle intervention</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -14,80 +14,65 @@
     </header>
 
     <div class="container">
+
         <div class="card">
 
             <form id="interventionForm">
 
-                <!-- Champ supprimé : N° Intervention -->
+                <!-- CHANTIER -->
+                <label for="chantier">Nom du chantier</label>
+                <input type="text" id="chantier" placeholder="Nom du chantier" required>
 
-                <div>
-                    <label>Nom du chantier</label>
-                    <input type="text" id="chantier">
-                </div>
+                <!-- DEMANDEUR -->
+                <label for="demandeur">Demandé par</label>
+                <select id="demandeur" required></select>
 
-                <div>
-                    <label>Demandé par</label>
-                    <select id="demandeur"></select>
-                </div>
+                <!-- TYPE -->
+                <label for="type">Type d’intervention</label>
+                <select id="type" required></select>
 
-                <div>
-                    <label>Type</label>
-                    <select id="type"></select>
-                </div>
+                <!-- DATE DEBUT -->
+                <label for="dateDebut">Date de début</label>
+                <input type="date" id="dateDebut" required>
 
-                <div>
-                    <label>Date début possible</label>
-                    <input type="date" id="dateDebut">
-                </div>
+                <!-- DATE PLANIF -->
+                <label for="datePlanif">Date planifiée</label>
+                <input type="date" id="datePlanif">
 
-                <div>
-                    <label>Date de planification</label>
-                    <input type="date" id="datePlanif">
-                </div>
+                <!-- STATUT -->
+                <label for="statut">Statut</label>
+                <select id="statut" required>
+                    <option value="À planifier">À planifier</option>
+                    <option value="Planifiée">Planifiée</option>
+                    <option value="Terminée">Terminée</option>
+                </select>
 
-                <div>
-                    <label>Statut</label>
-                    <select id="statut">
-                        <option value="À planifier">À planifier</option>
-                        <option value="Planifiée">Planifiée</option>
-                        <option value="Terminée">Terminée</option>
-                    </select>
-                </div>
+                <!-- ADRESSE -->
+                <label for="adresse">Adresse</label>
+                <input type="text" id="adresse" placeholder="Adresse du chantier">
 
-                <div>
-                    <label>Adresse</label>
-                    <input type="text" id="adresse">
-                </div>
+                <!-- VILLE -->
+                <label for="ville">Ville</label>
+                <input type="text" id="ville" placeholder="Ville">
 
-                <div>
-                    <label>Ville</label>
-                    <input type="text" id="ville">
-                </div>
+                <!-- OBSERVATIONS -->
+                <label for="observations">Observations</label>
+                <textarea id="observations" placeholder="Observations..."></textarea>
 
-                <div>
-                    <label>Observations</label>
-                    <textarea id="observations"></textarea>
-                </div>
+                <!-- NOTE INTERNE -->
+                <label for="noteInterne">Note interne</label>
+                <textarea id="noteInterne" placeholder="Note interne..."></textarea>
 
-                <div>
-                    <label>Note interne</label>
-                    <select id="noteInterne">
-                        <option value="Non">Non</option>
-                        <option value="Oui">Oui</option>
-                    </select>
-                </div>
-
-                <button type="submit">Créer l’intervention</button>
+                <!-- BOUTON -->
+                <button type="submit" class="btn-primary">Enregistrer</button>
 
             </form>
 
-            <div style="text-align:center; margin-top:20px;">
-                <a href="index.html" class="btn">Retour à la liste</a>
-            </div>
-
         </div>
+
     </div>
 
     <script src="script.js"></script>
+
 </body>
 </html>
