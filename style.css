@@ -233,3 +233,24 @@ button:hover {
     background-color: #28a745;
 }
 
+/* Couleurs de fond des lignes selon le statut */
+.ligne-a-planifier {
+    background-color: #f0f0f0; /* gris clair */
+}
+
+.ligne-planifie {
+    background-color: #e0f0ff; /* bleu très clair */
+}
+
+.ligne-en-cours {
+    background-color: #fff4e0; /* orange très clair */
+}
+
+.ligne-termine {
+    background-color: #e6ffe6; /* vert très clair */
+}
+
+/* Pour renforcer la lisibilité */
+#tableauInterventions tr:hover {
+    filter: brightness(0.95);
+}
