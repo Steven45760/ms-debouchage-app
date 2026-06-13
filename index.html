@@ -37,6 +37,7 @@
 
 <script src="data-init.js"></script>
 <script>
+/* Rendu du tableau */
 function render() {
     const tbody = document.getElementById('tbodyInterventions');
     const q = document.getElementById('recherche').value.toLowerCase();
@@ -66,8 +67,45 @@ function render() {
         `;
         tbody.appendChild(tr);
     });
+
+    // Après avoir construit le tableau, appliquer/normaliser les classes de statut
+    applyStatusClasses();
 }
 
+/* Appliquer classes de statut et ligne si manquantes */
+function applyStatusClasses() {
+    document.querySelectorAll('#tableauInterventions tbody tr').forEach(tr => {
+        const statutCell = tr.querySelector('td:nth-child(6)'); // colonne statut
+        if (!statutCell) return;
+        const badge = statutCell.querySelector('.statut');
+        const statutText = (badge ? badge.textContent : statutCell.textContent || '').trim().toLowerCase();
+
+        // Normaliser le texte en classe
+        let cls = 'a-planifier';
+        if (statutText.includes('en cours')) cls = 'en-cours';
+        else if (statutText.includes('termin')) cls = 'termine';
+        else if (statutText.includes('planifi')) {
+            // différencier "à planifier" et "planifié"
+            if (statutText.includes('à planifi') || statutText.includes('à ')) cls = 'a-planifier';
+            else cls = 'planifie';
+        }
+
+        // Ajouter classe badge si absent
+        if (badge) {
+            badge.classList.remove('statut-a-planifier','statut-planifie','statut-en-cours','statut-termine');
+            badge.classList.add('statut-' + cls);
+        } else {
+            // créer un badge si nécessaire
+            statutCell.innerHTML = `<span class="statut statut-${cls}">${statutCell.textContent.trim()}</span>`;
+        }
+
+        // Ajouter classe de ligne (nettoyage puis ajout)
+        tr.classList.remove('ligne-a-planifier','ligne-planifie','ligne-en-cours','ligne-termine');
+        tr.classList.add('ligne-' + cls);
+    });
+}
+
+/* Événements */
 document.getElementById('recherche').addEventListener('input', render);
 document.getElementById('resetData').addEventListener('click', function(e){
     e.preventDefault();
@@ -77,6 +115,7 @@ document.getElementById('resetData').addEventListener('click', function(e){
     }
 });
 
+/* Initialisation */
 window.addEventListener('DOMContentLoaded', render);
 </script>
 </body>
