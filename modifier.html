@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modifier intervention</title>
+    <title>Modifier une intervention</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -12,33 +12,36 @@
     <h1>Modifier une intervention</h1>
 
     <form id="modifierForm">
+
         <input type="hidden" id="id">
 
-        <label>N° Intervention</label>
-        <input type="text" id="numero">
+        <div>
+            <label>N° Intervention</label>
+            <input type="text" id="numero">
+        </div>
 
-        <label>Chantier</label>
-        <input type="text" id="chantier">
+        <div>
+            <label>Chantier</label>
+            <input type="text" id="chantier">
+        </div>
 
-        <label>Demandé par</label>
-        <input type="text" id="demandeur">
+        <div>
+            <label>Demandé par</label>
+            <input type="text" id="demandeur">
+        </div>
 
-        <label>Type</label>
-        <input type="text" id="type">
+        <div>
+            <label>Type</label>
+            <input type="text" id="type">
+        </div>
 
-        <label>Date planifiée</label>
-        <input type="date" id="datePlanif">
+        <div>
+            <label>Date planifiée</label>
+            <input type="date" id="datePlanif">
+        </div>
 
-        <label>Ville</label>
-        <input type="text" id="ville">
+        <div>
+            <label>Ville</label>
+            <input type="text" id="ville">
+        </div>
 
-        <button type="submit">Enregistrer les modifications</button>
-    </form>
-
-    <a href="liste.html" style="display:block; text-align:center; margin-top:20px;">
-        Retour à la liste
-    </a>
-
-    <script src="modifier.js"></script>
-</body>
-</html>
