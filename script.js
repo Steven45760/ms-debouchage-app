@@ -20,6 +20,58 @@ function genererNumeroIntervention() {
 
 
 // ------------------------------
+// Remplir automatiquement la liste "Demandé par"
+// ------------------------------
+function remplirDemandeurs() {
+    const demandeurs = [
+        "Sacha",
+        "Steven",
+        "Client direct",
+        "Entreprise partenaire"
+    ];
+
+    let select = document.getElementById("demandeur");
+
+    demandeurs.forEach(nom => {
+        let option = document.createElement("option");
+        option.value = nom;
+        option.textContent = nom;
+        select.appendChild(option);
+    });
+}
+
+
+// ------------------------------
+// Remplir automatiquement la liste "Type"
+// ------------------------------
+function remplirTypes() {
+    const types = [
+        "Curage",
+        "ITV",
+        "Curage + ITV"
+    ];
+
+    let select = document.getElementById("type");
+
+    types.forEach(t => {
+        let option = document.createElement("option");
+        option.value = t;
+        option.textContent = t;
+        select.appendChild(option);
+    });
+}
+
+
+// ------------------------------
+// Chargement initial du formulaire
+// ------------------------------
+window.onload = function () {
+    remplirDemandeurs();
+    remplirTypes();
+};
+
+
+// ------------------------------
 // Sauvegarde d’une intervention
 // ------------------------------
 document.getElementById("interventionForm").addEventListener("submit", function (e) {
