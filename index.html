@@ -1,64 +1,83 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Interventions</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Tableau des interventions</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
+<header>
+    <h1>Tableau des interventions</h1>
+</header>
 
-    <!-- HEADER -->
-    <header>
-        <h1>MS Débouchage – Tableau des interventions</h1>
-    </header>
-
-    <!-- CONTENU -->
-    <div class="container">
-
-        <!-- BOUTON NOUVELLE INTERVENTION -->
-        <div style="text-align:center; margin-bottom:25px;">
-            <a href="formulaire.html" class="btn-primary">
-                ➕ Nouvelle intervention
-            </a>
-        </div>
-
-        <!-- CARD TABLEAU -->
-        <div class="card">
-
-            <!-- Barre de recherche -->
-            <input 
-                type="text" 
-                id="recherche" 
-                placeholder="Rechercher une intervention..."
-            >
-
-            <!-- Tableau -->
-            <table id="tableauInterventions">
-                <thead>
-                    <tr>
-                        <th onclick="trier('numero')">N°</th>
-                        <th onclick="trier('chantier')">Chantier</th>
-                        <th onclick="trier('demandeur')">Demandé par</th>
-                        <th onclick="trier('type')">Type</th>
-                        <th onclick="trier('datePlanif')">Date planif</th>
-                        <th onclick="trier('ville')">Ville</th>
-                        <th onclick="trier('statut')">Statut</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <!-- Rempli automatiquement par liste.js -->
-                </tbody>
-            </table>
-
-        </div>
-
+<main class="container">
+    <div class="card">
+        <input id="recherche" placeholder="Rechercher par chantier, ville, demandeur..." />
+        <table id="tableauInterventions">
+            <thead>
+                <tr>
+                    <th>N°</th>
+                    <th>Chantier</th>
+                    <th>Ville</th>
+                    <th>Demandeur</th>
+                    <th>Date</th>
+                    <th>Statut</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="tbodyInterventions"></tbody>
+        </table>
     </div>
 
-    <script src="liste.js"></script>
+    <div style="text-align:center; margin-top:18px;">
+        <a href="#" id="resetData" class="btn">Réinitialiser données test</a>
+    </div>
+</main>
 
+<script src="data-init.js"></script>
+<script>
+function render() {
+    const tbody = document.getElementById('tbodyInterventions');
+    const q = document.getElementById('recherche').value.toLowerCase();
+    let interventions = JSON.parse(localStorage.getItem('interventions')) || [];
+    tbody.innerHTML = '';
+
+    interventions.forEach(inter => {
+        if (q && !(
+            (inter.chantier||'').toLowerCase().includes(q) ||
+            (inter.ville||'').toLowerCase().includes(q) ||
+            (inter.demandeur||'').toLowerCase().includes(q)
+        )) return;
+
+        const tr = document.createElement('tr');
+        tr.className = 'ligne-' + (inter.statut || 'a-planifier').toLowerCase().replace(/\s/g,'-');
+
+        tr.innerHTML = `
+            <td>${inter.numero || inter.id}</td>
+            <td>${inter.chantier || ''}</td>
+            <td>${inter.ville || ''}</td>
+            <td>${inter.demandeur || ''}</td>
+            <td>${inter.datePlanif || ''}</td>
+            <td><span class="statut statut-${(inter.statut||'a-planifier').toLowerCase().replace(/\s/g,'-')}">${inter.statut || 'À planifier'}</span></td>
+            <td>
+                <a class="btn" href="modifier.html?id=${inter.id}">Modifier</a>
+            </td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+document.getElementById('recherche').addEventListener('input', render);
+document.getElementById('resetData').addEventListener('click', function(e){
+    e.preventDefault();
+    if (confirm('Réinitialiser les données de test ?')) {
+        initializeSampleData(true);
+        render();
+    }
+});
+
+window.addEventListener('DOMContentLoaded', render);
+</script>
 </body>
 </html>
